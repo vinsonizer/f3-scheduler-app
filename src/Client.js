@@ -1,9 +1,13 @@
 const baseUrl = 'https://vs4x5exo7a.execute-api.us-east-1.amazonaws.com/dev/'
+const inDev = true
 
 export function getApi(path = '', callback) {
   fetch(baseUrl + path)
     .then(res => res.json())
-    .then(data => callback(null, data))
+    .then(data => {
+      if (inDev) console.log(`${path} returned ${JSON.stringify(data, null, 2)}`)
+      callback(null, data)
+    })
     .catch(err => callback(err))
 };
 
@@ -24,6 +28,9 @@ export async function postApi(path = '', data = {}, callback) {
   }
   fetch(baseUrl + path, options)
     .then(res => res.json())
-    .then(data => callback(null, data))
+    .then(data => {
+      if (inDev) console.log(`${path} returned ${JSON.stringify(data, null, 2)}`)
+      callback(null, data)
+    })
     .catch(err => callback(err));
 }
