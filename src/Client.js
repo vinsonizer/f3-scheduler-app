@@ -1,5 +1,5 @@
 const baseUrl = 'https://vs4x5exo7a.execute-api.us-east-1.amazonaws.com/dev/'
-const inDev = true
+const inDev = process.env.NODE_ENV === 'development'
 
 export function getApi(path = '', callback) {
   fetch(baseUrl + path)

@@ -17,8 +17,8 @@ const PaxContainer = (props) => {
   useEffect(() => {
     getApi('/regions/' + regionId + "/pax", (err, data) => {
       if(err) throw(err)
-      alert(`got back ${JSON.stringify(data.pax, null, 2)}`)
-      setPax(data.pax);
+      alert(`got back ${JSON.stringify(data, null, 2)}`)
+      setPax(data);
     })
   }, [regionId])
 

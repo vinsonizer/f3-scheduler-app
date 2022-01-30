@@ -58,14 +58,14 @@ const PaxDetails = (props) => {
     postApi('/regions/' + regionId + "/pax", thePax, function(err, data) {
       if(err) console.log(JSON.stringify(err, null, 2))
       setThePax({...thePax,
-        paxId: data.pax.paxId,
-        paxName: data.pax.paxName,
-        regionId: data.pax.regionId,
-        firstName: data.pax.firstName,
-        lastName: data.pax.lastName,
-        phoneNumber: data.pax.phoneNumber,
-        emailAddress: data.pax.emailAddress,
-        socialAccounts: data.pax.socialAccounts
+        paxId: data.paxId,
+        paxName: data.paxName,
+        regionId: data.regionId,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phoneNumber: data.phoneNumber,
+        emailAddress: data.emailAddress,
+        socialAccounts: data.socialAccounts
     })
     alert("post save is " + JSON.stringify(thePax, null, 2))
   })

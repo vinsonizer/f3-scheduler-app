@@ -11,7 +11,7 @@ const RegionsContainer = (props) => {
   useEffect(() => {
     getApi('/regions', (err, data) => {
       if(err) throw(err)
-      setRegions(data.regions);
+      setRegions(data);
     })
   }, [])
 

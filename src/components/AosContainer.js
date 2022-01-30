@@ -13,11 +13,11 @@ const AosContainer = (props) => {
     if(props.regionId) {
       getApi('/regions/' + props.regionId + "/aos", (err, data) => {
         if(err) throw(err)
-        setAos(data.aos);
+        setAos(data);
       })
       getApi('/regions/' + props.regionId + "/pax", (err, data) => {
         if(err) throw(err)
-        setPax(data.pax.reduce((map, obj) => {
+        setPax(data.reduce((map, obj) => {
           map[obj.paxId] = obj
           return map
         }, {}));
