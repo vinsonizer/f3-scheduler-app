@@ -32,7 +32,7 @@ const AoDetails = (props) => {
     if(regionId) {
       getApi('/regions/' + regionId + "/pax", (err, data) => {
         if(err) throw(err)
-        setPax(data.pax)
+        setPax(data)
       })
     }
 
@@ -92,18 +92,18 @@ const AoDetails = (props) => {
 
     return (
       <Container>
-        <Container className="p-3">
-          <Row>
-            <Col>
-              <h1>{!ao.aoName ? "New AO" : ao.aoName }</h1>
-            </Col>
-            <Col className="offset-mb-6">
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Col>
-          </Row>
-          <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler}>
+          <Container className="p-3">
+            <Row>
+              <Col>
+                <h1>{!ao.aoName ? "New AO" : ao.aoName }</h1>
+              </Col>
+              <Col className="offset-mb-6">
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="gridAoName">
                 <Form.Label>Name</Form.Label>
@@ -167,21 +167,21 @@ const AoDetails = (props) => {
               </Form.Group>
             </Row>
 
-          </Form>
-        </Container>
-        {showAssignments ?
-          <Container className="p-3">
-            <Row>
-              <AssignmentsContainer ao={ao} pax={pax}/>
-            </Row>
-            <Row>
-              <Col>
-                <Button variant="primary" type="button" onClick={newAssignment}>New Assignment</Button>
-              </Col>
-            </Row>
-          </Container> : <></>
-        }
+          </Container>
+          {showAssignments ?
+            <Container className="p-3">
+              <Row>
+                <AssignmentsContainer ao={ao} pax={pax}/>
+              </Row>
+              <Row>
+                <Col>
+                  <Button variant="primary" type="button" onClick={newAssignment}>New Assignment</Button>
+                </Col>
+              </Row>
+            </Container> : <></>
+          }
+        </Form>
       </Container>
-    );
-}
+        );
+        }
 export default AoDetails

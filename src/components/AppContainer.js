@@ -7,6 +7,7 @@ import PaxDetails from "./PaxDetails"
 import AoDetails from "./AoDetails"
 import AssignmentDetails from "./AssignmentDetails"
 import {Route, Switch, BrowserRouter} from "react-router-dom"
+import "../App.css"
 
 
 const AppContainer = (props) => {

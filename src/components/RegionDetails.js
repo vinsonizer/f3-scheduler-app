@@ -74,18 +74,18 @@ const RegionDetails = (props) => {
 
     return (
       <Container>
-        <Container className="m-3">
-          <Row>
-            <Col>
-              <h1>{region.regionName}</h1>
-            </Col>
-            <Col>
-              <Button variant="primary" type="submit" className="offset-md-10">
-                Submit
-              </Button>
-            </Col>
-          </Row>
-          <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler}>
+          <Container className="m-3">
+            <Row>
+              <Col>
+                <h1>{region.regionName}</h1>
+              </Col>
+              <Col className="text-right col-md-2">
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="gridRegionName">
                 <Form.Label>Name</Form.Label>
@@ -109,20 +109,20 @@ const RegionDetails = (props) => {
                 <Form.Control placeholder="Enter website" value={region.website} onChange={myChangeHandler("website")}/>
               </Form.Group>
             </Row>
-          </Form>
-        </Container>
-        <Container className="m-3">
-          {showAos ?
+          </Container>
+          <Container className="m-3">
+            {showAos ?
+              <Row>
+                <AosContainer regionId={region.regionId}/>
+              </Row> : <></>}
             <Row>
-              <AosContainer regionId={region.regionId}/>
-            </Row> : <></>}
-          <Row>
-            <Col className="offset-md-11">
-              <Button variant="primary" type="button" onClick={newAo}>Add AO</Button>
-            </Col>
-          </Row>
-        </Container>
+              <Col className="text-right offset-md-10">
+                <Button variant="primary" type="button" onClick={newAo}>Add AO</Button>
+              </Col>
+            </Row>
+          </Container>
+        </Form>
       </Container>
         );
-}
-export default RegionDetails
+        }
+        export default RegionDetails
