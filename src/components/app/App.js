@@ -1,16 +1,24 @@
 import React from "react"
-import RegionsContainer from "./RegionsContainer"
-import PaxContainer from "./PaxContainer"
-import Header from "./Header"
-import RegionDetails from "./RegionDetails"
-import PaxDetails from "./PaxDetails"
-import AoDetails from "./AoDetails"
-import AssignmentDetails from "./AssignmentDetails"
+import RegionsContainer from "../region/RegionsContainer"
+import PaxContainer from "../pax/PaxContainer"
+import Header from "../template/Header"
+import RegionDetails from "../region/RegionDetails"
+import PaxDetails from "../pax/PaxDetails"
+import AoDetails from "../ao/AoDetails"
+import Login from "../login/Login"
+import useToken from "./useToken"
+import AssignmentDetails from "../assignment/AssignmentDetails"
 import {Route, Switch, BrowserRouter} from "react-router-dom"
-import "../App.css"
+import "./App.css"
 
 
-const AppContainer = (props) => {
+const App = (props) => {
+  const {token, setToken} = useToken();
+
+  if(!token) {
+    return <Login setToken={setToken}/>
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -64,4 +72,4 @@ const AppContainer = (props) => {
 }
 
 
-export default AppContainer
+export default App

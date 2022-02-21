@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import AoRow from "./AoRow"
 import Container from "react-bootstrap/Container"
 import Table from "react-bootstrap/Table"
-import {getApi} from "../Client"
+import {getApi} from "../../Client"
 
 const AosContainer = (props) => {
 

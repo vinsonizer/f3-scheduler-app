@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import RegionRow from "./RegionRow"
 import Container from "react-bootstrap/Container"
 import Table from "react-bootstrap/Table"
-import {getApi} from "../Client"
+import {getApi} from "../../Client"
 
 const RegionsContainer = (props) => {
 

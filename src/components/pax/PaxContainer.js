@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import {getApi} from "../Client"
+import {getApi} from "../../Client"
 import {useParams, useHistory} from "react-router-dom"
 
 const PaxContainer = (props) => {

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import AssignmentRow from "./AssignmentRow"
 import Container from "react-bootstrap/Container"
 import Table from "react-bootstrap/Table"
-import {getApi} from "../Client"
+import {getApi} from "../../Client"
 
 const AssignmentsContainer = (props) => {
 

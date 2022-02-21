@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
-import {getApi, postApi} from "../Client"
+import {getApi, postApi} from "../../Client"
 import {useParams} from "react-router-dom"
 
 
@@ -85,7 +85,7 @@ const PaxDetails = (props) => {
 
               <Form.Group as={Col} controlId="gridEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control placeholder="Enter email" type="email" value={thePax.email} onChange={myChangeHandler("emailAddress")} />
+                <Form.Control placeholder="Enter email" type="email" value={thePax.emailAddress} onChange={myChangeHandler("emailAddress")} />
               </Form.Group>
             </Row>
 

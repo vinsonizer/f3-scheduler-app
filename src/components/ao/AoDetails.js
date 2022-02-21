@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react"
-import AssignmentsContainer from "./AssignmentsContainer"
+import AssignmentsContainer from "../assignment/AssignmentsContainer"
 import Form from "react-bootstrap/Form"
 import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
-import {getApi, postApi} from "../Client"
+import {getApi, postApi} from "../../Client"
 import {useParams, useHistory} from "react-router-dom"
 
 
