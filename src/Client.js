@@ -1,53 +1,54 @@
-const baseUrl = 'https://vxzx9gn29l.execute-api.us-east-1.amazonaws.com/dev'
+const baseUrl = "https://vxzx9gn29l.execute-api.us-east-1.amazonaws.com/dev";
 
-const inDev = process.env.NODE_ENV === 'development'
+const inDev = process.env.NODE_ENV === "development";
 
-export function getApi(path = '', callback) {
+export function getApi(path = "", callback) {
   const options = {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      'Authorization': sessionStorage.getItem('token')
+      Authorization: sessionStorage.getItem("token"),
       //'Content-Type': 'application/x-www-form-urlencoded',
-    }
-  }
+    },
+  };
 
   fetch(baseUrl + path, options)
-    .then(res => {
-      res.json()
-    }).then(data => {
-      if (inDev) console.log(`${path} returned ${JSON.stringify(data, null, 2)}`)
-      callback(null, data)
+    .then((res) => res.json())
+    .then((data) => {
+      if (inDev)
+        console.log(`${path} returned ${JSON.stringify(data, null, 2)}`);
+      callback(null, data);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(JSON.stringify(err, null, 2));
-      callback(err)
-    })
-};
+      callback(err);
+    });
+}
 
-export async function postApi(path = '', data = {}, callback) {
+export async function postApi(path = "", data = {}, callback) {
   // Default options are marked with *
   const options = {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     //credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': sessionStorage.getItem('token')
+      "Content-Type": "application/json",
+      Authorization: sessionStorage.getItem("token"),
       //'Content-Type': 'application/x-www-form-urlencoded',
     },
     //redirect: 'follow', // manual, *follow, error
     //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }
-  console.log(JSON.stringify(options))
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  };
+  console.log(JSON.stringify(options));
   fetch(baseUrl + path, options)
-    .then(res => res.json())
-    .then(data => {
-      if (inDev) console.log(`${path} returned ${JSON.stringify(data, null, 2)}`)
-      callback(null, data)
+    .then((res) => res.json())
+    .then((data) => {
+      if (inDev)
+        console.log(`${path} returned ${JSON.stringify(data, null, 2)}`);
+      callback(null, data);
     })
-    .catch(err => callback(err));
+    .catch((err) => callback(err));
 }

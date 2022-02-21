@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from "react"
-import RegionRow from "./RegionRow"
-import Container from "react-bootstrap/Container"
-import Table from "react-bootstrap/Table"
-import {getApi} from "../../Client"
+import React, { useState, useEffect } from "react";
+import RegionRow from "./RegionRow";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
+import { getApi } from "../../Client";
 
 const RegionsContainer = (props) => {
-
-  const [regions, setRegions] = useState([])
+  const [regions, setRegions] = useState([]);
 
   useEffect(() => {
-    getApi('/regions', (err, data) => {
-      if(err) throw(err)
+    getApi("/regions", (err, data) => {
+      if (err) throw err;
       setRegions(data);
-    })
-  }, [])
-
+    });
+  }, []);
 
   return (
     <Container className="p-3">
@@ -28,14 +26,19 @@ const RegionsContainer = (props) => {
           </tr>
         </thead>
         <tbody>
-          {!regions ?
-            <tr><td colSpan="4">Loading</td></tr> : regions.map(region => {
+          {!regions ? (
+            <tr>
+              <td colSpan="4">Loading</td>
+            </tr>
+          ) : (
+            regions.map((region) => {
               //console.log(region);
-              return(<RegionRow region={region} key={region.regionId}/>)
-            })}
+              return <RegionRow region={region} key={region.regionId} />;
+            })
+          )}
         </tbody>
       </Table>
     </Container>
   );
-}
-export default RegionsContainer
+};
+export default RegionsContainer;
