@@ -1,11 +1,9 @@
-import React from "react"
-import Navigation from "./Navigation"
+import React from "react";
+import Navigation from "./Navigation";
 
 class Header extends React.Component {
   render() {
-    return(
-      <Navigation/>
-    )
+    return <Navigation />;
   }
 }
-export default Header
+export default Header;

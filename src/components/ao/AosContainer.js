@@ -1,29 +1,30 @@
-import React, {useState, useEffect} from "react"
-import AoRow from "./AoRow"
-import Container from "react-bootstrap/Container"
-import Table from "react-bootstrap/Table"
-import {getApi} from "../../Client"
+import React, { useState, useEffect } from "react";
+import AoRow from "./AoRow";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
+import { getApi } from "../../Client";
 
 const AosContainer = (props) => {
-
-  const [aos, setAos] = useState([])
-  const [pax, setPax] = useState({})
+  const [aos, setAos] = useState([]);
+  const [pax, setPax] = useState({});
 
   useEffect(() => {
-    if(props.regionId) {
-      getApi('/regions/' + props.regionId + "/aos", (err, data) => {
-        if(err) throw(err)
+    if (props.regionId) {
+      getApi("/regions/" + props.regionId + "/aos", (err, data) => {
+        if (err) throw err;
         setAos(data);
-      })
-      getApi('/regions/' + props.regionId + "/pax", (err, data) => {
-        if(err) throw(err)
-        setPax(data.reduce((map, obj) => {
-          map[obj.paxId] = obj
-          return map
-        }, {}));
-      })
+      });
+      getApi("/regions/" + props.regionId + "/pax", (err, data) => {
+        if (err) throw err;
+        setPax(
+          data.reduce((map, obj) => {
+            map[obj.paxId] = obj;
+            return map;
+          }, {})
+        );
+      });
     }
-  }, [props.regionId])
+  }, [props.regionId]);
 
   return (
     <Container>
@@ -37,14 +38,25 @@ const AosContainer = (props) => {
           </tr>
         </thead>
         <tbody>
-          {!aos ?
-            <tr><td colSpan="4">Loading</td></tr> : aos.map(ao => {
+          {!aos ? (
+            <tr>
+              <td colSpan="4">Loading</td>
+            </tr>
+          ) : (
+            aos.map((ao) => {
               //console.log(ao);
-              return(<AoRow ao={ao} key={ao.aoId} siteQ={ao.siteQId ? pax[ao.siteQId] : {}}/>)
-            })}
+              return (
+                <AoRow
+                  ao={ao}
+                  key={ao.aoId}
+                  siteQ={ao.siteQId ? pax[ao.siteQId] : {}}
+                />
+              );
+            })
+          )}
         </tbody>
       </Table>
     </Container>
   );
-}
-export default AosContainer
+};
+export default AosContainer;
