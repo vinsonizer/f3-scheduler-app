@@ -1,4 +1,5 @@
-const baseUrl = "https://vxzx9gn29l.execute-api.us-east-1.amazonaws.com/dev";
+const instance = "hix2e1rlv5";
+const baseUrl = `https://${instance}.execute-api.us-east-1.amazonaws.com/dev`;
 
 const inDev = process.env.NODE_ENV === "development";
 
