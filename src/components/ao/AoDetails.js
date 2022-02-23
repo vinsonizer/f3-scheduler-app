@@ -29,7 +29,7 @@ const AoDetails = (props) => {
   useEffect(
     (ao, pax) => {
       if (regionId) {
-        getApi("/regions/" + regionId + "/pax", (err, data) => {
+        getApi("/user", (err, data) => {
           if (err) throw err;
           setPax(data);
         });

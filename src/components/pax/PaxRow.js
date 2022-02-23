@@ -4,11 +4,10 @@ const PaxRow = (props) => {
   return (
     <tr>
       <td>
-        <a href={`/region/${props.pax.regionId}/pax/${props.pax.paxId}`}>
-          {props.pax.paxName}
-        </a>
+        <a href={`/pax/${props.pax.username}`}>{props.pax.nickname}</a>
       </td>
-      <td>{props.pax.emailAddress}</td>
+      <td>{props.pax.name}</td>
+      <td>{props.pax.email}</td>
     </tr>
   );
 };

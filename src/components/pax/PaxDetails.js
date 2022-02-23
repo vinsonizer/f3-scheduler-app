@@ -8,40 +8,32 @@ import { getApi, postApi } from "../../Client";
 import { useParams } from "react-router-dom";
 
 const PaxDetails = (props) => {
-  const { regionId, paxId } = useParams();
+  const { regionId, username } = useParams();
   const [thePax, setThePax] = useState({
-    paxId: paxId,
-    paxName: "",
-    regionId: regionId,
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    emailAddress: "",
-    socialAccounts: "",
+    username: username,
+    name: "",
+    nickname: "",
+    email: "",
   });
 
   useEffect(
     (thePax) => {
-      console.log("inside with " + regionId + " and " + paxId);
-      if (regionId && paxId) {
-        getApi("/regions/" + regionId + "/pax/" + paxId, (err, data) => {
+      console.log("inside with " + username);
+      if (username) {
+        getApi("/user/" + username, (err, data) => {
           console.log(`got ${JSON.stringify(data)}`);
           if (err) throw err;
           setThePax({
             ...thePax,
-            paxId: data.paxId,
-            paxName: data.paxName,
-            regionId: data.regionId,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            phoneNumber: data.phoneNumber,
-            emailAddress: data.emailAddress,
-            socialAccounts: data.socialAccounts,
+            username: data.username,
+            name: data.name,
+            nickname: data.nickname,
+            email: data.email,
           });
         });
       }
     },
-    [paxId, regionId]
+    [username]
   );
 
   //const {regionName, emailAddress, id, location, website} = props.region
@@ -57,6 +49,7 @@ const PaxDetails = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     alert("submitting for " + JSON.stringify(thePax, null, 2));
+    /*
     postApi("/regions/" + regionId + "/pax", thePax, function (err, data) {
       if (err) console.log(JSON.stringify(err, null, 2));
       setThePax({
@@ -71,21 +64,22 @@ const PaxDetails = (props) => {
         socialAccounts: data.socialAccounts,
       });
       alert("post save is " + JSON.stringify(thePax, null, 2));
-    });
+   });
+   */
   };
 
   return (
     <Container>
-      <h1>{!thePax.paxName ? "New PAX" : thePax.paxName}</h1>
+      <h1>{!thePax.nickname ? "New PAX" : thePax.nickname}</h1>
       <Container className="p-3">
         <Form onSubmit={submitHandler}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="gridName">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Nickname</Form.Label>
               <Form.Control
                 placeholder="Enter name"
-                value={thePax.paxName}
-                onChange={myChangeHandler("paxName")}
+                value={thePax.nickname}
+                onChange={myChangeHandler("nickname")}
               />
             </Form.Group>
 
@@ -94,39 +88,19 @@ const PaxDetails = (props) => {
               <Form.Control
                 placeholder="Enter email"
                 type="email"
-                value={thePax.emailAddress}
-                onChange={myChangeHandler("emailAddress")}
+                value={thePax.email}
+                onChange={myChangeHandler("email")}
               />
             </Form.Group>
           </Row>
 
           <Row className="mb-3">
-            <Form.Group as={Col} controlId="gridFirstName">
-              <Form.Label>First Name</Form.Label>
+            <Form.Group as={Col} controlId="gridName">
+              <Form.Label>Full Name</Form.Label>
               <Form.Control
-                placeholder="Enter first name"
-                value={thePax.firstName}
-                onChange={myChangeHandler("firstName")}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="gridLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                placeholder="Enter last name"
-                value={thePax.lastName}
-                onChange={myChangeHandler("lastName")}
-              />
-            </Form.Group>
-          </Row>
-
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="gridPhoneNumber">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                placeholder="Enter phone number"
-                value={thePax.phoneNumber}
-                onChange={myChangeHandler("phoneNumber")}
+                placeholder="Enter full name"
+                value={thePax.name}
+                onChange={myChangeHandler("name")}
               />
             </Form.Group>
           </Row>

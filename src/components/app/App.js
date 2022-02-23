@@ -37,15 +37,11 @@ const App = (props) => {
           <Header />
           <AoDetails />
         </Route>
-        <Route path="/region/:regionId/pax/:paxId">
+        <Route path="/pax/:username">
           <Header />
           <PaxDetails />
         </Route>
-        <Route path="/region/:regionId/pax">
-          <Header />
-          <PaxDetails />
-        </Route>
-        <Route path="/region/:regionId/all-pax">
+        <Route path="/all-pax">
           <Header />
           <PaxContainer />
         </Route>

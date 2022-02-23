@@ -11,9 +11,8 @@ const Navigation = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/regions">Regions</Nav.Link>
             <Nav.Link href="/region/the-fort">My Region</Nav.Link>
-            <Nav.Link href="/region/the-fort/all-pax">My Pax</Nav.Link>
+            <Nav.Link href="/all-pax">My Pax</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

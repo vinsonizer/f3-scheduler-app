@@ -14,9 +14,8 @@ const PaxContainer = (props) => {
   const [pax, setPax] = useState([]);
 
   useEffect(() => {
-    getApi("/regions/" + regionId + "/pax", (err, data) => {
+    getApi("/user", (err, data) => {
       if (err) throw err;
-      alert(`got back ${JSON.stringify(data, null, 2)}`);
       setPax(data);
     });
   }, [regionId]);
@@ -42,6 +41,7 @@ const PaxContainer = (props) => {
               <thead>
                 <tr>
                   <th>Name</th>
+                  <th>Full Name</th>
                   <th>Email Address</th>
                 </tr>
               </thead>
@@ -52,7 +52,7 @@ const PaxContainer = (props) => {
                   </tr>
                 ) : (
                   pax.map((thePax) => {
-                    return <PaxRow key={thePax.paxId} pax={thePax} />;
+                    return <PaxRow key={thePax.email} pax={thePax} />;
                   })
                 )}
               </tbody>
