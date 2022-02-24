@@ -14,15 +14,39 @@ export function getApi(path = "", callback) {
     },
   };
 
+  /*
+  fetch('flowers.jpg')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    }
+    return response.blob();
+  })
+  .then(myBlob => {
+    myImage.src = URL.createObjectURL(myBlob);
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
+  */
+
   fetch(baseUrl + path, options)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        sessionStorage.removeItem("token");
+        window.reload();
+        return {};
+      } else {
+        return res.json();
+      }
+    })
     .then((data) => {
       if (inDev)
         console.log(`${path} returned ${JSON.stringify(data, null, 2)}`);
       callback(null, data);
     })
     .catch((err) => {
-      console.log(JSON.stringify(err, null, 2));
+      console.log(`error is ${JSON.stringify(err, null, 2)}`);
       callback(err);
     });
 }

@@ -182,17 +182,21 @@ const AoDetails = (props) => {
                   Select Site Q
                 </option>
                 {pax.map((member) => {
-                  if (ao.siteQId === member.paxId) {
+                  if (ao.siteQId === member.username) {
                     // LAME
                     return (
-                      <option key={member.paxId} value={member.paxId} selected>
-                        {member.paxName}
+                      <option
+                        key={member.username}
+                        value={member.username}
+                        selected
+                      >
+                        {member.nickname}
                       </option>
                     );
                   } else {
                     return (
-                      <option key={member.paxId} value={member.paxId}>
-                        {member.paxName}
+                      <option key={member.username} value={member.username}>
+                        {member.nickname}
                       </option>
                     );
                   }

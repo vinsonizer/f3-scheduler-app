@@ -22,7 +22,7 @@ const AoRow = (props) => {
       </td>
       <td>{props.ao.type}</td>
       <td>{scheduleFormatter(props.ao)}</td>
-      <td>{props.siteQ ? props.siteQ.paxName : ""}</td>
+      <td>{props.siteQ ? props.siteQ.nickname : ""}</td>
     </tr>
   );
 };

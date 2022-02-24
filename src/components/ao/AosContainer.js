@@ -14,11 +14,11 @@ const AosContainer = (props) => {
         if (err) throw err;
         setAos(data);
       });
-      getApi("/regions/" + props.regionId + "/pax", (err, data) => {
+      getApi("/user", (err, data) => {
         if (err) throw err;
         setPax(
           data.reduce((map, obj) => {
-            map[obj.paxId] = obj;
+            map[obj.username] = obj;
             return map;
           }, {})
         );
