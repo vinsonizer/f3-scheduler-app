@@ -33,9 +33,9 @@ const AssignmentDetails = (props) => {
     (assignment, ao) => {
       //console.log("AO ID is " + aoId + ", and regionId is " + regionId)
       if (regionId) {
-        getApi("/regions/" + regionId + "/pax", (err, data) => {
+        getApi("/user", (err, data) => {
           if (err) throw err;
-          setPax(data.pax);
+          setPax(data);
         });
       }
 
@@ -149,21 +149,21 @@ const AssignmentDetails = (props) => {
                   >
                     <option key="none">Select Q</option>
                     {pax.map((member) => {
-                      if (q.paxId === member.paxId) {
+                      if (q.username === member.username) {
                         // LAME
                         return (
                           <option
-                            key={member.paxId}
-                            value={member.paxId}
+                            key={member.username}
+                            value={member.username}
                             selected
                           >
-                            {member.paxName}
+                            {member.nickname}
                           </option>
                         );
                       } else {
                         return (
-                          <option key={member.paxId} value={member.paxId}>
-                            {member.paxName}
+                          <option key={member.username} value={member.username}>
+                            {member.nickname}
                           </option>
                         );
                       }

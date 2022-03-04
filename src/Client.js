@@ -9,7 +9,7 @@ export function getApi(path = "", callback) {
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     headers: {
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: localStorage.getItem("token"),
       //'Content-Type': 'application/x-www-form-urlencoded',
     },
   };
@@ -31,15 +31,7 @@ export function getApi(path = "", callback) {
   */
 
   fetch(baseUrl + path, options)
-    .then((res) => {
-      if (!res.ok) {
-        sessionStorage.removeItem("token");
-        window.reload();
-        return {};
-      } else {
-        return res.json();
-      }
-    })
+    .then((res) => res.json())
     .then((data) => {
       if (inDev)
         console.log(`${path} returned ${JSON.stringify(data, null, 2)}`);

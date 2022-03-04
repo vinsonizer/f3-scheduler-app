@@ -34,6 +34,8 @@ export default function Login({ setToken }) {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <div>Username: testemail@email.com</div>
+      <div>Password: abcdefg1234567</div>
     </div>
   );
 }
