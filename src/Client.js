@@ -52,7 +52,7 @@ export async function postApi(path = "", data = {}, callback) {
     //credentials: 'same-origin', // include, *same-origin, omit
     headers: {
       "Content-Type": "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: localStorage.getItem("token"),
       //'Content-Type': 'application/x-www-form-urlencoded',
     },
     //redirect: 'follow', // manual, *follow, error
